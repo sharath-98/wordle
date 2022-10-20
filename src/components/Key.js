@@ -3,8 +3,7 @@ import { AppContext } from '../App';
 import './Key.css'
 
 function Key({value, enter_back_key}) {
-  const {board, setBoard, curGuess, setCurGuess
-        , onSelectLetter, onBackPress, onEnterKey} = useContext(AppContext);
+  const {onSelectLetter, onBackPress, onEnterKey} = useContext(AppContext);
 
   //Handle key clicks in the keyboard
   const handleKeyboardClick = () =>{
