@@ -16,7 +16,7 @@ function App() {
     index:0
   });
 
-  const correctWord = "RIGHT"
+  const [correctWord, setCorrectWord] = useState('');
   const [wordSet, setWordSet] = useState(new Set());
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameState, setGameState] = useState({
@@ -27,6 +27,7 @@ function App() {
   useEffect(()=>{
     generateWord().then((words)=>{
       setWordSet(words.wordSet)
+      setCorrectWord(words.todaysWord.toUpperCase())
     })
   },[])
 
