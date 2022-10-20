@@ -16,10 +16,11 @@ function App() {
   });
 
   const correctWord = "RIGHT"
+  const [wordSet, setWordSet] = useState(new Set());
 
   useEffect(()=>{
     generateWord().then((words)=>{
-      console.log(words)
+      setWordSet(words.wordSet)
     })
   },[])
 
@@ -41,10 +42,24 @@ function App() {
             return;
         if(curGuess.guessNumber > 5)
             return;
-        setCurGuess({
-            guessNumber: curGuess.guessNumber + 1,
-            index: 0
-        }); 
+        
+        // get the current word
+        let curWord = "";
+        for(let i=0;i<5;i++)
+          curWord += board[curGuess.guessNumber][i];
+        
+        // Check if this is a valid word
+        if(wordSet.has(curWord.toLowerCase())){
+          setCurGuess({
+              guessNumber: curGuess.guessNumber + 1,
+              index: 0
+          }); 
+        }
+        else{
+          alert("Word not in dictionary !!!")
+        }
+
+        
   }
 
   const onBackPress = () => {
