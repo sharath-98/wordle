@@ -4,6 +4,7 @@ import Keyboard from './components/Keyboard';
 import Nav from './components/Nav';
 import {createContext, useEffect, useState} from 'react'
 import { boardDefault, generateWord } from './Words';
+import Message from './components/Message';
 
 export const AppContext = createContext();
 
@@ -18,6 +19,10 @@ function App() {
   const correctWord = "RIGHT"
   const [wordSet, setWordSet] = useState(new Set());
   const [disabledLetters, setDisabledLetters] = useState([]);
+  const [gameState, setGameState] = useState({
+    gameOver: false,
+    guessedCorrect: false
+  })
 
   useEffect(()=>{
     generateWord().then((words)=>{
@@ -60,7 +65,20 @@ function App() {
         }
 
         if(curWord === correctWord){
-          alert("You Won!!!")
+          setGameState({
+            gameOver:true,
+            guessedCorrect:true
+          })
+          return
+        }
+
+        // Last attempt check
+        if(curGuess.guessNumber === 5){
+          setGameState({
+            gameOver:true,
+            guessedCorrect:false
+          })
+          return
         }
   }
 
@@ -79,9 +97,10 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <AppContext.Provider value={{board, setBoard, curGuess, setCurGuess, onSelectLetter, onBackPress, onEnterKey, correctWord, disabledLetters, setDisabledLetters}}>
+      <AppContext.Provider value={{board, setBoard, curGuess, setCurGuess, onSelectLetter, onBackPress,
+       onEnterKey, correctWord, disabledLetters, setDisabledLetters, gameState, setGameState}}>
         <Board/>
-        <Keyboard/>
+        {gameState.gameOver ? <Message/> : <Keyboard/>}
       </AppContext.Provider>
     </div>
   );
