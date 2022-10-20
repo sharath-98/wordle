@@ -7,7 +7,7 @@ function Letter({letterIndex, guessNumber}) {
   const {board} = useContext(AppContext);
   const letter = board[guessNumber][letterIndex];
   return (
-    <div className='letter'>{''}</div>
+    <div className='letter'>{letter}</div>
   )
 }
 

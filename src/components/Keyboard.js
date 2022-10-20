@@ -30,7 +30,7 @@ function Keyboard() {
             <Key key={i} value={key} enter_back_key={false}/>
           ))
         }
-        <Key value={'Back'} enter_back_key={true}/>
+        <Key value={'BACK'} enter_back_key={true}/>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../App';
 import { boardDefault } from '../Words';
 import './Board.css'
@@ -12,10 +12,10 @@ function Board() {
         {
             board.map((letters, i)=>{
                 return(
-                    <div className="row">
+                    <div key={i} className="row">
                         {
                             letters.map((letter, j)=>(
-                                <Letter className="letter" guessNumber={i} letterIndex={j}/>
+                                <Letter key={j} className="letter" guessNumber={i} letterIndex={j}/>
                             ))
                         }
                     </div>
