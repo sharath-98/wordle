@@ -4,7 +4,7 @@ import './Nav.css'
 function Nav() {
   return (
     <div className='nav'>
-        <h2>Wordle</h2>
+        <p>Wordle</p>
     </div>
   )
 }

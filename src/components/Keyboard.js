@@ -1,8 +1,9 @@
 import React from 'react'
+import './Keyboard.css'
 
 function Keyboard() {
   return (
-    <div>Keyboard</div>
+    <div className='keyboard'>Keyboard</div>
   )
 }
 
