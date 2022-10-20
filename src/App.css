@@ -1,9 +1,9 @@
 .App{
   text-align: center;
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: whitesmoke;
+  background-color: #181818;
 }
 

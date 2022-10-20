@@ -2,8 +2,8 @@ import './App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import Nav from './components/Nav';
-import {createContext, useState} from 'react'
-import { boardDefault } from './Words';
+import {createContext, useEffect, useState} from 'react'
+import { boardDefault, generateWord } from './Words';
 
 export const AppContext = createContext();
 
@@ -14,6 +14,14 @@ function App() {
     guessNumber:0,
     index:0
   });
+
+  const correctWord = "RIGHT"
+
+  useEffect(()=>{
+    generateWord().then((words)=>{
+      console.log(words)
+    })
+  },[])
 
   const onSelectLetter = (value) => {
         if(curGuess.index > 4 || curGuess.guessNumber > 5)
@@ -55,7 +63,7 @@ function App() {
     <div className="App">
       <Nav/>
       <AppContext.Provider value={{board, setBoard, curGuess, setCurGuess, onSelectLetter, 
-      onBackPress, onEnterKey}}>
+      onBackPress, onEnterKey, correctWord}}>
         <Board/>
         <Keyboard/>
       </AppContext.Provider>

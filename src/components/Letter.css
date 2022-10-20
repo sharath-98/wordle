@@ -9,6 +9,18 @@
   font-size: 30px;
   justify-content: center;
   font-weight: bolder;
-  color: gray;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#correct {
+  background-color: #528d4e;
+}
+
+#almost {
+  background-color: #b49f39;
+}
+
+#error {
+  background-color: #3a393c;
 }
