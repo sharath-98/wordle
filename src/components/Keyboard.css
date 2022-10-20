@@ -1,3 +1,11 @@
 .keyboard{
     flex: 0.4;
+    display: flex;
+    flex-direction: column;
+}
+
+.line1, .line2, .line3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
