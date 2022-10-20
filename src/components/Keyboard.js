@@ -4,7 +4,7 @@ import Key from './Key';
 import './Keyboard.css'
 
 function Keyboard() {
-  const {onSelectLetter, onBackPress, onEnterKey} = useContext(AppContext);
+  const {onSelectLetter, onBackPress, onEnterKey, disabledLetters, setDisabledLetters} = useContext(AppContext);
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
@@ -45,14 +45,14 @@ function Keyboard() {
       <div className="line1">
         {
           keys1.map((key,i)=>(
-            <Key key={i} value={key}/>
+            <Key key={i} value={key} disabled={disabledLetters.includes(key)}/>
           ))
         }
       </div>
       <div className="line2">
         {
           keys2.map((key,i)=>(
-            <Key key={i} value={key}/>
+            <Key key={i} value={key} disabled={disabledLetters.includes(key)}/>
           ))
         }
       </div>
@@ -60,7 +60,7 @@ function Keyboard() {
         <Key value={'ENTER'} enter_back_key={true}/>
         {
           keys3.map((key,i)=>(
-            <Key key={i} value={key} enter_back_key={false}/>
+            <Key key={i} value={key} enter_back_key={false} disabled={disabledLetters.includes(key)}/>
           ))
         }
         <Key value={'BACK'} enter_back_key={true}/>

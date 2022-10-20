@@ -18,3 +18,7 @@
 .bigKey{
     width: 80px;
 }
+
+.disabled{
+    background-color: black;
+}

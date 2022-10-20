@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../App';
 import './Key.css'
 
-function Key({value, enter_back_key}) {
+function Key({value, enter_back_key, disabled}) {
   const {onSelectLetter, onBackPress, onEnterKey} = useContext(AppContext);
 
   //Handle key clicks in the keyboard
@@ -19,7 +19,7 @@ function Key({value, enter_back_key}) {
   }
 
   return (
-    <div className={`key ${enter_back_key && 'bigKey'}`} onClick={handleKeyboardClick}>
+    <div className={`key ${enter_back_key ? 'bigKey': disabled && 'disabled'}`} id={`${disabled && 'disabled'}`} onClick={handleKeyboardClick}>
         {value}
     </div>
   )

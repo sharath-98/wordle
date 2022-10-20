@@ -17,6 +17,7 @@ function App() {
 
   const correctWord = "RIGHT"
   const [wordSet, setWordSet] = useState(new Set());
+  const [disabledLetters, setDisabledLetters] = useState([]);
 
   useEffect(()=>{
     generateWord().then((words)=>{
@@ -40,9 +41,6 @@ function App() {
     //Base condition---check if all the letters are typed in
         if(curGuess.index != 5)
             return;
-        if(curGuess.guessNumber > 5)
-            return;
-        
         // get the current word
         let curWord = "";
         for(let i=0;i<5;i++)
@@ -50,6 +48,8 @@ function App() {
         
         // Check if this is a valid word
         if(wordSet.has(curWord.toLowerCase())){
+          const curBoard = [...board];
+          setBoard(curBoard);
           setCurGuess({
               guessNumber: curGuess.guessNumber + 1,
               index: 0
@@ -59,7 +59,9 @@ function App() {
           alert("Word not in dictionary !!!")
         }
 
-        
+        if(curWord === correctWord){
+          alert("You Won!!!")
+        }
   }
 
   const onBackPress = () => {
@@ -77,8 +79,7 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <AppContext.Provider value={{board, setBoard, curGuess, setCurGuess, onSelectLetter, 
-      onBackPress, onEnterKey, correctWord}}>
+      <AppContext.Provider value={{board, setBoard, curGuess, setCurGuess, onSelectLetter, onBackPress, onEnterKey, correctWord, disabledLetters, setDisabledLetters}}>
         <Board/>
         <Keyboard/>
       </AppContext.Provider>
